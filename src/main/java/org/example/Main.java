@@ -6,6 +6,7 @@ import java.net.*;
 
 
 public class Main {
+    private static int connectionCount = 0 ;
 
     public static void main(String[] args) {
 
@@ -19,6 +20,10 @@ public class Main {
                 Socket socket = serverSocket.accept();
                 System.out.println("New client connected...");
 
+                synchronized(Main.class){
+                    connectionCount++;
+                    System.out.println("ActiveConnections: " + connectionCount );
+                }
 
                 new ClientHandler(socket).start();
             }
@@ -31,7 +36,11 @@ public class Main {
 
     }
 
-
+public static void removeOneConnection() {
+        if(connectionCount > 0){
+            connectionCount--;
+        }
+}
 
 
 
