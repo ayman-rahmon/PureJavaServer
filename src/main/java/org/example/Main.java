@@ -40,6 +40,8 @@ public static void removeOneConnection() {
         if(connectionCount > 0){
             connectionCount--;
         }
+
+        System.out.println("Connection closed => new Connection Counter : " + connectionCount);
 }
 
 
